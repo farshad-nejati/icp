@@ -1,2 +1,4 @@
 import ipc
-test = ipc.DevExtractor()
+
+if (False):
+    dev_extractor = ipc.DevExtractor()
