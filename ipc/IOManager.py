@@ -1,6 +1,9 @@
 import os
+import pickle
 import shutil
 import errno
+
+OBJ_DIRNAME = os.path.abspath(os.path.join(os.path.dirname(__file__), '../obj'))
 
 
 class IOManager:
@@ -36,3 +39,14 @@ class IOManager:
         filename = os.path.splitext(filename)[0]
         poet, century, poem_id = filename.split('-')
         return {'poem_id': poem_id, 'poet': poet, 'century': century}
+
+    @staticmethod
+    def save_obj(obj, name):
+        IOManager.init_directories(OBJ_DIRNAME)
+        with open(OBJ_DIRNAME + '/' + name + '.pkl', 'wb') as f:
+            pickle.dump(obj, f, pickle.HIGHEST_PROTOCOL)
+
+    @staticmethod
+    def load_obj(name):
+        with open(OBJ_DIRNAME + '/' + name + '.pkl', 'rb') as f:
+            return pickle.load(f)
