@@ -1,5 +1,5 @@
 from __future__ import unicode_literals
-from hazm import *
+from hazm import word_tokenize
 from .IOManager import *
 
 
