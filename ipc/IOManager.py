@@ -7,9 +7,6 @@ OBJ_DIRNAME = os.path.abspath(os.path.join(os.path.dirname(__file__), '../obj'))
 
 
 class IOManager:
-    def __init__(self):
-        pass
-
     @staticmethod
     def init_directories(folder_name):
         try:

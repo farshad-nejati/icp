@@ -1,5 +1,6 @@
 from ipc import *
 import os
+import operator
 
 if False:
     dev_extractor = DevExtractor()
@@ -14,16 +15,18 @@ if False:
     print(IOManager.info_extractor(d))
 
 if False:
-    d = {
-        'word1': {
-            'ferdoosi': 3,
-            'sadi': 5,
-        },
-        'word2': {
-            'ferdoosi': 6,
-            'sadi': 4,
-        },
-    }
-    io = IOManager.save_obj(d, 'data')
-    s = IOManager.load_obj('data')
-    print(s['word2'])
+    dictionary = IOManager.load_obj('data')
+    temp = 0
+    size = 0
+    for f in os.listdir(DEVSET_DIRNAME):
+        file_path = os.path.join(DEVSET_DIRNAME, f)
+        if os.path.isfile(file_path):
+            vector, score = IRClassifier.get_class(file_path, dictionary)
+            max_score = max(score.items(), key=operator.itemgetter(1))[0]
+            file_info = IOManager.info_extractor(file_path)
+            size = size + 1
+            if file_info['poet'] == max_score:
+                temp = temp + 1
+            if size % 100 == 0:
+                print(size)
+    print(temp / size * 100)
