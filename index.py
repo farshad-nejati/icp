@@ -15,6 +15,16 @@ if False:
     print(IOManager.info_extractor(d))
 
 if False:
+    dev_extractor = DevExtractor()
+
+
+if False:
+    DictionaryManager.train()
+    IOManager.save_obj(DictionaryManager.dictionary_list, 'data')
+    print(DictionaryManager.dictionary_list)
+
+
+if False:
     dictionary = IOManager.load_obj('data')
     temp = 0
     size = 0
